@@ -62,7 +62,7 @@ const FoodLoadingScreen = () => {
       </h2>
       <p className="text-gray-600 mb-2 text-center">{loadingText}...</p>
       <p className="text-sm text-gray-500 text-center">
-        Our kitchen takes a minute to warm up on the free plan.
+        Our kitchen takes some few seconds to warm up.
       </p>
 
       {/* Progress bar */}
