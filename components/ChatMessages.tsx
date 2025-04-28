@@ -13,15 +13,28 @@ interface MenuItemType {
   [key: string]: any;
 }
 
-interface OrderType {
-  [key: string]: any;
+interface OrderItem {
+  id: string;
+  name: string;
+  price: string | number;
+  quantity: number;
 }
+
 interface Order {
-  [key: string]: any;
+  items: OrderItem[]; // Array of order items
+  total: string | number; // The total price of the order
+  id: string;
+  date: string;
+
+  status: "completed" | "paid" | "placed" | "cancelled" | string;
 }
-
-// Import the Order type from OrderDetails
-
+interface OrderType {
+  id: string;
+  date: string;
+  total: string | number;
+  items: number;
+  status: "completed" | "paid" | "placed" | "cancelled" | string;
+}
 interface MessageType {
   id: string;
   from: "bot" | "user";
@@ -29,7 +42,7 @@ interface MessageType {
   timestamp?: string | Date;
   isTyping?: boolean;
   menuItems?: MenuItemType[];
-  order?: Order;
+  order?: Order; // Now expecting the correct `Order` type
   orderHistory?: OrderType[];
 }
 
@@ -76,7 +89,7 @@ export default function ChatMessages({
 
               {/* Render menu items if available */}
               {message.menuItems && (
-                <div className="mt-4 ">
+                <div className="mt-4">
                   {message.menuItems.map((item) => (
                     <MenuItem
                       key={item.id}

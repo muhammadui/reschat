@@ -1,6 +1,3 @@
-// components/PaymentModal.jsx
-
-import { usePaystackPayment } from "react-paystack";
 // components/PaymentModal.tsx
 import { useState } from "react";
 
@@ -20,8 +17,6 @@ interface PaymentModalProps {
 export default function PaymentModal({
   paymentInfo,
   onClose,
-  onComplete,
-  deviceId,
 }: PaymentModalProps) {
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
