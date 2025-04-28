@@ -8,6 +8,8 @@ import ChatMessages from "@/components/ChatMessages";
 import InputArea from "@/components/InputArea";
 import PaymentModal from "@/components/PaymentModal";
 
+import FoodLoadingScreen from "@/components/FoodLoadingScreen";
+
 // Types
 interface Message {
   id: string;
@@ -246,14 +248,22 @@ export default function Home() {
     <main className="chat-container">
       <ChatHeader />
 
-      <ChatMessages
-        messages={messages}
-        options={options}
-        onOptionClick={handleOptionClick}
-        messagesEndRef={messagesEndRef}
-      />
+      {loading ? (
+        <div className="flex-grow overflow-hidden">
+          <FoodLoadingScreen />
+        </div>
+      ) : (
+        <>
+          <ChatMessages
+            messages={messages}
+            options={options}
+            onOptionClick={handleOptionClick}
+            messagesEndRef={messagesEndRef}
+          />
 
-      <InputArea onSendMessage={sendMessage} />
+          <InputArea onSendMessage={sendMessage} />
+        </>
+      )}
 
       {showPaymentModal && paymentInfo && (
         <PaymentModal
